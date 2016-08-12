@@ -1,70 +1,62 @@
 package com.theironyard.charlotte;
 
-public class Car {
-    String company;
-    String year;
-    String color;
-    String convertible;
-    String rimSize;
+import java.util.Scanner;
+
+class Car {
+    private static String company;
+    private static String year;
+    private static String color;
+    private static String convertible;
+    private static String rimSize;
 
     public Car() {
 
     }
 
-    public Car(String company, String year, String color, String convertible, String rimSize) {
-        this.company = company;
-        this.year = year;
-        this.color = color;
-        this.convertible = convertible;
-        this.rimSize = rimSize;
+    private Car(String company, String year, String color, String convertible, String rimSize) {
+        Car.company = company;
+        Car.year = year;
+        Car.color = color;
+        Car.convertible = convertible;
+        Car.rimSize = rimSize;
     }
     @Override
     public String toString() {
-        return this.year + ", " + this.color + " " + this.company + " " + this.convertible + " with " + this.rimSize + " \" rims.";
+        return Car.year + ", " + Car.color + " " + Car.company + " " + Car.convertible + " with " + Car.rimSize + "\" rims.";
     }
 
-    public static Car createItem(String company, String year, String color, String convertible, String rimSize){
-        return new Car(company, year, color, convertible, rimSize);
-    }
+    static Car createItem(){
 
-    public String getCompany() {
-        return company;
-    }
+        Scanner scanner = new Scanner(System.in);
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
+        // prompt the user to answer questions about a car
 
-    public String getYear() {
-        return year;
-    }
+        System.out.println("Questions about your car:\n");
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+        System.out.println("What company manufactured your car?");
+        company = scanner.nextLine();
 
-    public String getColor() {
-        return color;
-    }
+        System.out.println("What year is your car?");
+        year = scanner.nextLine();
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+        System.out.println("What color is your car?");
+        color = scanner.nextLine();
 
-    public String getConvertible() {
-        return convertible;
-    }
+        System.out.println("Is it a convertible? [y/n]");
+        convertible = scanner.nextLine();
 
-    public void setConvertible(String convertible) {
-        this.convertible = convertible;
-    }
+        if (convertible.equalsIgnoreCase("Y")){
 
-    public String getRimSize() {
-        return rimSize;
-    }
+            convertible = "Convertible";
 
-    public void setRimSize(String rimSize) {
-        this.rimSize = rimSize;
+        } else {
+
+            convertible = "Hardtop";
+        }
+
+        System.out.println("What size are the rims (Inches)?");
+        rimSize = scanner.nextLine();
+
+        return new Car (company, year, color, convertible, rimSize);
     }
 }
-
